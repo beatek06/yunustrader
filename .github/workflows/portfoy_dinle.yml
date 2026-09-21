@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install requests python-dotenv
+      - run: pip install -r requirements.txt
 
       - name: Telegram mesajlarini isle
         env:
