@@ -26,7 +26,10 @@ jobs:
       - name: Zaman kontrolu
         id: zaman
         run: |
-          if python scripts/zaman_kontrol.py; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "manuel tetikleme, zaman kontrolu atlaniyor"
+            echo "calis=evet" >> "$GITHUB_OUTPUT"
+          elif python scripts/zaman_kontrol.py; then
             echo "calis=evet" >> "$GITHUB_OUTPUT"
           else
             echo "calis=hayir" >> "$GITHUB_OUTPUT"
