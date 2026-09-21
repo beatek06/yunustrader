@@ -1,0 +1,8 @@
+{
+  "aciklama": "Teknik analiz ajaninin taradigi semboller. Portfoyde olmayan ama izlenmesini istedigin sembolleri de buraya ekleyebilirsin.",
+  "semboller": [
+    { "sembol": "BTC", "yfinance_ticker": "BTC-USD" },
+    { "sembol": "ETH", "yfinance_ticker": "ETH-USD" },
+    { "sembol": "NVDA", "yfinance_ticker": "NVDA" }
+  ]
+}

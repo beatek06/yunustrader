@@ -1,0 +1,52 @@
+name: Piyasa Bildirimi
+
+on:
+  schedule:
+    # Zurich 12:00 ve 19:00 icin hem kis (CET, UTC+1) hem yaz (CEST, UTC+2)
+    # saatleri tanimlanir; zaman_kontrol.py hangisinin gecerli oldugunu secer.
+    - cron: '0 11 * * *'  # CET 12:00
+    - cron: '0 10 * * *'  # CEST 12:00
+    - cron: '0 18 * * *'  # CET 19:00
+    - cron: '0 17 * * *'  # CEST 19:00
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  bildirim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Zaman kontrolu
+        id: zaman
+        run: |
+          if python scripts/zaman_kontrol.py; then
+            echo "calis=evet" >> "$GITHUB_OUTPUT"
+          else
+            echo "calis=hayir" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Bagimliliklari kur
+        if: steps.zaman.outputs.calis == 'evet'
+        run: pip install -r requirements.txt
+
+      - name: Teknik analiz
+        if: steps.zaman.outputs.calis == 'evet'
+        run: python scripts/teknik_analiz.py
+
+      - name: Karar olustur
+        if: steps.zaman.outputs.calis == 'evet'
+        run: python scripts/karar_ajani.py
+
+      - name: Telegram'a gonder
+        if: steps.zaman.outputs.calis == 'evet'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/telegram_bildirim.py

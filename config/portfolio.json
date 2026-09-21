@@ -1,0 +1,63 @@
+{
+  "para_birimi_notu": "Degerler ekran goruntusundeki anlik fiyatlardan tahmini olarak hesaplanmistir, gercek alis maliyeti degildir. Gercek alis fiyatini biliyorsan asagida 'ortalama_maliyet' alanini elle duzelt.",
+  "son_guncelleme": "2026-09-21",
+  "pozisyonlar": {
+    "BTC": {
+      "ad": "Bitcoin",
+      "miktar": 0.00092575,
+      "birim": "BTC",
+      "ortalama_maliyet": 85995,
+      "maliyet_para_birimi": "USD",
+      "yfinance_ticker": "BTC-USD",
+      "otomatik_analiz": true
+    },
+    "ETH": {
+      "ad": "Ethereum",
+      "miktar": 0.03877984,
+      "birim": "ETH",
+      "ortalama_maliyet": 2748.6,
+      "maliyet_para_birimi": "USD",
+      "yfinance_ticker": "ETH-USD",
+      "otomatik_analiz": true
+    },
+    "NVDA": {
+      "ad": "Nvidia",
+      "miktar": 0.2119,
+      "birim": "hisse",
+      "ortalama_maliyet": 227.3,
+      "maliyet_para_birimi": "USD",
+      "yfinance_ticker": "NVDA",
+      "otomatik_analiz": true
+    },
+    "GOLD_ETC": {
+      "ad": "Swisscanto Gold ETC",
+      "miktar": 0.0468,
+      "birim": "hisse",
+      "ortalama_maliyet": 1058.3,
+      "maliyet_para_birimi": "CHF",
+      "yfinance_ticker": null,
+      "otomatik_analiz": false,
+      "not": "Ucretsiz veri kaynagi bulunamadi, sadece portfoy degerinde manuel takip edilir."
+    },
+    "SILVER_ETC": {
+      "ad": "Swisscanto Silver ETC",
+      "miktar": 0.0771,
+      "birim": "hisse",
+      "ortalama_maliyet": 154.9,
+      "maliyet_para_birimi": "CHF",
+      "yfinance_ticker": null,
+      "otomatik_analiz": false,
+      "not": "Ucretsiz veri kaynagi bulunamadi, sadece portfoy degerinde manuel takip edilir."
+    },
+    "SWISSQOIN": {
+      "ad": "Swissqoin",
+      "miktar": 158,
+      "birim": "SWQ",
+      "ortalama_maliyet": 0.0212,
+      "maliyet_para_birimi": "CHF",
+      "yfinance_ticker": null,
+      "otomatik_analiz": false,
+      "not": "Ucretsiz veri kaynagi bulunamadi, sadece portfoy degerinde manuel takip edilir."
+    }
+  }
+}

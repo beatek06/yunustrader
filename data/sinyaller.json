@@ -1,0 +1,32 @@
+{
+  "olusturulma_zamani": "2026-09-21T18:26:24.972882+00:00",
+  "sinyaller": {
+    "BTC": {
+      "son_fiyat": 85948.5469,
+      "sma20": 78881.9441,
+      "sma50": 73658.0175,
+      "rsi14": 68.9,
+      "macd": 1916.7492,
+      "macd_sinyal": 1561.2523,
+      "macd_pozitif_kesisim": true
+    },
+    "ETH": {
+      "son_fiyat": 2749.45,
+      "sma20": 2508.0487,
+      "sma50": 2290.7663,
+      "rsi14": 68.6,
+      "macd": 86.844,
+      "macd_sinyal": 75.9651,
+      "macd_pozitif_kesisim": true
+    },
+    "NVDA": {
+      "son_fiyat": 227.355,
+      "sma20": 219.3623,
+      "sma50": 214.3996,
+      "rsi14": 56.59,
+      "macd": 1.487,
+      "macd_sinyal": 1.5464,
+      "macd_pozitif_kesisim": false
+    }
+  }
+}
