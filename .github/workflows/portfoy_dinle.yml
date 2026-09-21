@@ -29,6 +29,6 @@ jobs:
         run: |
           git config user.name "a-sirketi-bot"
           git config user.email "actions@github.com"
-          git add config/portfolio.json data/telegram_offset.txt
+          git add config/portfolio.json data/telegram_offset.txt data/islem_gecmisi.json
           git diff --cached --quiet || git commit -m "Portfoy guncellendi (otomatik)"
           git push

@@ -6,6 +6,7 @@ Format esnektir:
   "AL NVDA 2"         -> fiyat verilmezse anlik piyasa fiyati otomatik cekilir
   "aldim btc 0.001"   -> buyuk/kucuk harf ve "aldim/sattim" gibi cekimler de calisir
   "aldim nvda 100$"   -> tutar bazli: 100$'lik NVDA icin anlik fiyattan adet hesaplanir
+  "IPTAL"             -> en son islenen AL/SAT islemini geri alir
 """
 import os
 import re
@@ -44,6 +45,9 @@ TUTAR_DESENI = re.compile(
     r"^(AL\w*|SAT\w*)\s+([A-Za-z0-9]+)\s+([\d.,]+)\s*(\$|€|₺|usd|dolar|chf|fr|eur|tl|try)(?:\W|$)",
     re.IGNORECASE,
 )
+
+# "IPTAL", "GERI AL", "GERIAL", "UNDO" -> son islemi geri alir
+IPTAL_DESENI = re.compile(r"^(IPTAL|GERI\s*AL|GERIAL|UNDO)\b", re.IGNORECASE)
 
 
 def son_offset_oku() -> int:
@@ -119,6 +123,11 @@ def calistir() -> None:
         if not metin or not gonderen_chat_id:
             continue
 
+        if IPTAL_DESENI.match(metin):
+            sonuc = portfoy.son_islemi_geri_al()
+            mesaj_gonder(gonderen_chat_id, sonuc)
+            continue
+
         tutar_eslesme = TUTAR_DESENI.match(metin)
         eslesme = ISLEM_DESENI.match(metin) if not tutar_eslesme else None
 
@@ -168,6 +177,7 @@ def calistir() -> None:
                 "Anlamadim. Su formatlardan biriyle yaz:\n"
                 "- AL SEMBOL MIKTAR [FIYAT]  (orn: AL NVDA 2   veya   sattim btc 0.001 95000)\n"
                 "- AL SEMBOL TUTAR$  (orn: aldim nvda 100$  -> anlik fiyattan adet hesaplanir)\n"
+                "- IPTAL  (son islemi geri alir)\n"
                 "Chat ID: " + gonderen_chat_id,
             )
 
