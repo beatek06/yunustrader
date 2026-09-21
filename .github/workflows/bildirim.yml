@@ -36,9 +36,13 @@ jobs:
         if: steps.zaman.outputs.calis == 'evet'
         run: pip install -r requirements.txt
 
-      - name: Teknik analiz
+      - name: Teknik + temel analiz (portfoy)
         if: steps.zaman.outputs.calis == 'evet'
         run: python scripts/teknik_analiz.py
+
+      - name: Firsat tarama (portfoy disi)
+        if: steps.zaman.outputs.calis == 'evet'
+        run: python scripts/firsat_tara.py
 
       - name: Karar olustur
         if: steps.zaman.outputs.calis == 'evet'

@@ -1,0 +1,19 @@
+{
+  "aciklama": "Portfoy disi firsat taramasinin baktigi genis aday listesi. Buradakiler otomatik olarak taranir, portfoyde zaten olanlar rapordan elenir.",
+  "semboller": [
+    { "sembol": "AAPL", "yfinance_ticker": "AAPL", "tur": "hisse" },
+    { "sembol": "MSFT", "yfinance_ticker": "MSFT", "tur": "hisse" },
+    { "sembol": "GOOGL", "yfinance_ticker": "GOOGL", "tur": "hisse" },
+    { "sembol": "AMZN", "yfinance_ticker": "AMZN", "tur": "hisse" },
+    { "sembol": "META", "yfinance_ticker": "META", "tur": "hisse" },
+    { "sembol": "TSLA", "yfinance_ticker": "TSLA", "tur": "hisse" },
+    { "sembol": "AMD", "yfinance_ticker": "AMD", "tur": "hisse" },
+    { "sembol": "NESN", "yfinance_ticker": "NESN.SW", "tur": "hisse" },
+    { "sembol": "NOVN", "yfinance_ticker": "NOVN.SW", "tur": "hisse" },
+    { "sembol": "ROG", "yfinance_ticker": "RO.SW", "tur": "hisse" },
+    { "sembol": "UBSG", "yfinance_ticker": "UBSG.SW", "tur": "hisse" },
+    { "sembol": "SOL", "yfinance_ticker": "SOL-USD", "tur": "kripto" },
+    { "sembol": "XRP", "yfinance_ticker": "XRP-USD", "tur": "kripto" },
+    { "sembol": "BNB", "yfinance_ticker": "BNB-USD", "tur": "kripto" }
+  ]
+}

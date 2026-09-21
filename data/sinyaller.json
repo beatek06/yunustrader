@@ -1,32 +1,47 @@
 {
-  "olusturulma_zamani": "2026-09-21T18:26:24.972882+00:00",
+  "olusturulma_zamani": "2026-09-21T18:39:04.970785+00:00",
   "sinyaller": {
     "BTC": {
-      "son_fiyat": 85948.5469,
-      "sma20": 78881.9441,
-      "sma50": 73658.0175,
-      "rsi14": 68.9,
-      "macd": 1916.7492,
-      "macd_sinyal": 1561.2523,
-      "macd_pozitif_kesisim": true
+      "tur": "kripto",
+      "son_fiyat": 85894.2891,
+      "sma20": 78879.2312,
+      "sma50": 73656.9323,
+      "rsi14": 68.81,
+      "macd": 1912.4209,
+      "macd_sinyal": 1560.3866,
+      "macd_pozitif_kesisim": true,
+      "teknik_skoru": 2,
+      "temel_skoru": 0,
+      "temel_aciklama": "kripto icin temel analiz uygulanmaz",
+      "toplam_skor": 2
     },
     "ETH": {
-      "son_fiyat": 2749.45,
-      "sma20": 2508.0487,
-      "sma50": 2290.7663,
-      "rsi14": 68.6,
-      "macd": 86.844,
-      "macd_sinyal": 75.9651,
-      "macd_pozitif_kesisim": true
+      "tur": "kripto",
+      "son_fiyat": 2748.26,
+      "sma20": 2507.9892,
+      "sma50": 2290.7425,
+      "rsi14": 68.55,
+      "macd": 86.7491,
+      "macd_sinyal": 75.9461,
+      "macd_pozitif_kesisim": true,
+      "teknik_skoru": 2,
+      "temel_skoru": 0,
+      "temel_aciklama": "kripto icin temel analiz uygulanmaz",
+      "toplam_skor": 2
     },
     "NVDA": {
-      "son_fiyat": 227.355,
-      "sma20": 219.3623,
-      "sma50": 214.3996,
-      "rsi14": 56.59,
-      "macd": 1.487,
-      "macd_sinyal": 1.5464,
-      "macd_pozitif_kesisim": false
+      "tur": "hisse",
+      "son_fiyat": 227.655,
+      "sma20": 219.3773,
+      "sma50": 214.4056,
+      "rsi14": 56.84,
+      "macd": 1.5109,
+      "macd_sinyal": 1.5512,
+      "macd_pozitif_kesisim": false,
+      "teknik_skoru": 0,
+      "temel_skoru": 4,
+      "temel_aciklama": "P/E 28.8 (notr), gelir buyumesi %106 (guclu), kar buyumesi %128 (guclu), analist konsensusu Al yonlu, analist hedef fiyati %44 yukarida",
+      "toplam_skor": 4
     }
   }
 }

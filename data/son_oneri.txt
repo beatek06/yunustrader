@@ -1,7 +1,28 @@
-A Sirketi - Piyasa Ozeti (21.09.2026 20:26 Zurich)
+A Sirketi - Piyasa Raporu (21.09.2026 20:39 Zurich)
 
-BTC: 85948.5469 | RSI 68.9 | AL sinyali guclu | Elinde: 0.00092575 BTC, maliyete gore -0.1%
-ETH: 2749.45 | RSI 68.6 | AL sinyali guclu | Elinde: 0.03877984 ETH, maliyete gore +0.0%
-NVDA: 227.355 | RSI 56.59 | Notr | Elinde: 0.2119 hisse, maliyete gore +0.0%
+1) FIRSAT TARAMASI (portfoy disi, su anki en guclu 5 aday)
+
+1. GOOGL (355.135) - RSI 63.13, MACD pozitif, P/E 17.8 (ucuz/makul)
+2. AMZN (258.4101) - RSI 48.45, P/E 20.8 (ucuz/makul)
+3. AAPL (338.98) - RSI 70.71, MACD pozitif, P/E 38.9 (notr)
+4. MSFT (497.69) - RSI 44.45, P/E 27.7 (notr)
+5. AMD (608.315) - RSI 77.84, MACD pozitif, P/E 155.2 (pahali)
+
+2) PORTFOY ANALIZI (temel + teknik birlesik)
+
+Bitcoin (BTC) - TUT (hafif pozitif) | toplam skor +2
+Teknik: RSI 68.81 notr bolgede, fiyat ortalamalarin uzerinde (yukselis trendi), MACD pozitif kesisimde (momentum yukari).
+Temel: kripto icin temel analiz uygulanmaz, sadece teknik gostergeler kullanildi.
+Pozisyon: 0.00092575 BTC, maliyete gore -0.1%. Karar: TUT.
+
+Ethereum (ETH) - TUT (hafif pozitif) | toplam skor +2
+Teknik: RSI 68.55 notr bolgede, fiyat ortalamalarin uzerinde (yukselis trendi), MACD pozitif kesisimde (momentum yukari).
+Temel: kripto icin temel analiz uygulanmaz, sadece teknik gostergeler kullanildi.
+Pozisyon: 0.03877984 ETH, maliyete gore -0.0%. Karar: TUT.
+
+Nvidia (NVDA) - AL sinyali guclu | toplam skor +4
+Teknik: RSI 56.84 notr bolgede, fiyat ortalamalarin uzerinde (yukselis trendi), MACD negatif bolgede (momentum asagi).
+Temel: P/E 28.8 (notr), gelir buyumesi %106 (guclu), kar buyumesi %128 (guclu), analist konsensusu Al yonlu, analist hedef fiyati %44 yukarida.
+Pozisyon: 0.2119 hisse, maliyete gore +0.2%. Karar: AL.
 
 Not: Bu bir yatirim tavsiyesi degildir, kural tabanli otomatik ozet niteligindedir.

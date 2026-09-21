@@ -1,0 +1,32 @@
+[
+  {
+    "sembol": "GOOGL",
+    "son_fiyat": 355.135,
+    "toplam_skor": 6,
+    "gerekce": "RSI 63.13, MACD pozitif, P/E 17.8 (ucuz/makul)"
+  },
+  {
+    "sembol": "AMZN",
+    "son_fiyat": 258.4101,
+    "toplam_skor": 5,
+    "gerekce": "RSI 48.45, P/E 20.8 (ucuz/makul)"
+  },
+  {
+    "sembol": "AAPL",
+    "son_fiyat": 338.98,
+    "toplam_skor": 4,
+    "gerekce": "RSI 70.71, MACD pozitif, P/E 38.9 (notr)"
+  },
+  {
+    "sembol": "MSFT",
+    "son_fiyat": 497.69,
+    "toplam_skor": 3,
+    "gerekce": "RSI 44.45, P/E 27.7 (notr)"
+  },
+  {
+    "sembol": "AMD",
+    "son_fiyat": 608.315,
+    "toplam_skor": 3,
+    "gerekce": "RSI 77.84, MACD pozitif, P/E 155.2 (pahali)"
+  }
+]
