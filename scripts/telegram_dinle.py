@@ -5,6 +5,7 @@ Format esnektir:
   "AL NVDA 2 227.5"   -> NVDA'dan 2 adet, 227.5 fiyattan alindi
   "AL NVDA 2"         -> fiyat verilmezse anlik piyasa fiyati otomatik cekilir
   "aldim btc 0.001"   -> buyuk/kucuk harf ve "aldim/sattim" gibi cekimler de calisir
+  "aldim nvda 100$"   -> tutar bazli: 100$'lik NVDA icin anlik fiyattan adet hesaplanir
 """
 import os
 import re
@@ -29,6 +30,18 @@ OFFSET_PATH = BASE_DIR / "data" / "telegram_offset.txt"
 # Fiyat kismi opsiyoneldir.
 ISLEM_DESENI = re.compile(
     r"^(AL\w*|SAT\w*)\s+([A-Za-z0-9]+)\s+([\d.,]+)(?:\s+([\d.,]+))?",
+    re.IGNORECASE,
+)
+
+# Tutar bazli format: "aldim nvda 100$" / "AL BTC 50 usd" / "sattim eth 30 chf"
+PARA_BIRIMLERI = {
+    "$": "USD", "usd": "USD", "dolar": "USD",
+    "chf": "CHF", "fr": "CHF",
+    "eur": "EUR", "€": "EUR",
+    "tl": "TRY", "₺": "TRY", "try": "TRY",
+}
+TUTAR_DESENI = re.compile(
+    r"^(AL\w*|SAT\w*)\s+([A-Za-z0-9]+)\s+([\d.,]+)\s*(\$|€|₺|usd|dolar|chf|fr|eur|tl|try)(?:\W|$)",
     re.IGNORECASE,
 )
 
@@ -106,8 +119,31 @@ def calistir() -> None:
         if not metin or not gonderen_chat_id:
             continue
 
-        eslesme = ISLEM_DESENI.match(metin)
-        if eslesme:
+        tutar_eslesme = TUTAR_DESENI.match(metin)
+        eslesme = ISLEM_DESENI.match(metin) if not tutar_eslesme else None
+
+        if tutar_eslesme:
+            ham_yon, sembol, tutar_str, birim_ham = tutar_eslesme.groups()
+            yon = yon_normalize_et(ham_yon)
+            tutar = float(tutar_str.replace(",", "."))
+            para_birimi = PARA_BIRIMLERI.get(birim_ham.lower(), "USD")
+
+            fiyat = canli_fiyat_al(sembol)
+            if fiyat is None:
+                mesaj_gonder(
+                    gonderen_chat_id,
+                    f"'{sembol}' icin anlik fiyat bulunamadi, tutar bazli islem yapilamadi. "
+                    f"Miktari kendin yazabilirsin: orn. '{ham_yon} {sembol} 0.5'",
+                )
+                continue
+
+            miktar = tutar / fiyat
+            sonuc = portfoy.islem_uygula(sembol, yon, miktar, fiyat, para_birimi)
+            mesaj_gonder(
+                gonderen_chat_id,
+                f"{sonuc}\n({tutar} {para_birimi} / anlik fiyat {fiyat:.4f} = {miktar:.6f} adet)",
+            )
+        elif eslesme:
             ham_yon, sembol, miktar_str, fiyat_str = eslesme.groups()
             yon = yon_normalize_et(ham_yon)
             miktar = float(miktar_str.replace(",", "."))
@@ -129,9 +165,9 @@ def calistir() -> None:
         else:
             mesaj_gonder(
                 gonderen_chat_id,
-                "Anlamadim. Format: 'AL SEMBOL MIKTAR [FIYAT]' veya 'SAT SEMBOL MIKTAR [FIYAT]'\n"
-                "Fiyat yazmazsan anlik piyasa fiyati otomatik kullanilir.\n"
-                "Ornek: AL NVDA 2   veya   sattim btc 0.001 95000\n"
+                "Anlamadim. Su formatlardan biriyle yaz:\n"
+                "- AL SEMBOL MIKTAR [FIYAT]  (orn: AL NVDA 2   veya   sattim btc 0.001 95000)\n"
+                "- AL SEMBOL TUTAR$  (orn: aldim nvda 100$  -> anlik fiyattan adet hesaplanir)\n"
                 "Chat ID: " + gonderen_chat_id,
             )
 
