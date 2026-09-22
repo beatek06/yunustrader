@@ -2,16 +2,14 @@ name: Piyasa Bildirimi
 
 on:
   schedule:
-    # Zurich 12:00 ve 19:00 icin hem kis (CET, UTC+1) hem yaz (CEST, UTC+2)
-    # saatleri tanimlanir; zaman_kontrol.py hangisinin gecerli oldugunu secer.
-    - cron: '0 11 * * *'  # CET 12:00
-    - cron: '0 10 * * *'  # CEST 12:00
-    - cron: '0 18 * * *'  # CET 19:00
-    - cron: '0 17 * * *'  # CEST 19:00
+    # GitHub'in cron tetikleyicileri gecikebildigi icin sik araliklarla
+    # kontrol edilir; asil karar scripts/zaman_kontrol.py'daki 'bugun bu
+    # slot (ogle/aksam) gonderildi mi' takibiyle verilir.
+    - cron: '*/20 * * * *'
   workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   bildirim:
@@ -29,10 +27,15 @@ jobs:
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "manuel tetikleme, zaman kontrolu atlaniyor"
             echo "calis=evet" >> "$GITHUB_OUTPUT"
-          elif python scripts/zaman_kontrol.py; then
-            echo "calis=evet" >> "$GITHUB_OUTPUT"
+            echo "slot=manuel" >> "$GITHUB_OUTPUT"
           else
-            echo "calis=hayir" >> "$GITHUB_OUTPUT"
+            SLOT=$(python scripts/zaman_kontrol.py)
+            if [ $? -eq 0 ]; then
+              echo "calis=evet" >> "$GITHUB_OUTPUT"
+              echo "slot=$SLOT" >> "$GITHUB_OUTPUT"
+            else
+              echo "calis=hayir" >> "$GITHUB_OUTPUT"
+            fi
           fi
 
       - name: Bagimliliklari kur
@@ -57,3 +60,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/telegram_bildirim.py
+
+      - name: Slotu isaretle ve commitle
+        if: steps.zaman.outputs.calis == 'evet' && github.event_name == 'schedule'
+        run: |
+          python -c "import sys; sys.path.insert(0, 'scripts'); import zaman_kontrol; zaman_kontrol.slot_isaretle('${{ steps.zaman.outputs.slot }}')"
+          git config user.name "a-sirketi-bot"
+          git config user.email "actions@github.com"
+          git add data/son_bildirim.json
+          git diff --cached --quiet || git commit -m "Bildirim slotu isaretlendi: ${{ steps.zaman.outputs.slot }}"
+          git pull --rebase --autostash origin main
+          git push
