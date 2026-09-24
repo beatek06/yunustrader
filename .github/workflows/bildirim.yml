@@ -29,8 +29,7 @@ jobs:
             echo "calis=evet" >> "$GITHUB_OUTPUT"
             echo "slot=manuel" >> "$GITHUB_OUTPUT"
           else
-            SLOT=$(python scripts/zaman_kontrol.py)
-            if [ $? -eq 0 ]; then
+            if SLOT=$(python scripts/zaman_kontrol.py); then
               echo "calis=evet" >> "$GITHUB_OUTPUT"
               echo "slot=$SLOT" >> "$GITHUB_OUTPUT"
             else
